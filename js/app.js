@@ -91,7 +91,7 @@ Merch.handleClick = function(event) {
 
   if(Merch.totalClicks > 24) {
     Merch.sectionEl.removeEventListener('click', Merch.handleClick);
-    alert('This concludes the survey.');
+    alert('This concludes the survey. Thank you.');
     Merch.getVotes();
     Merch.generateList();
     Merch.displayChart();
