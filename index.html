@@ -7,7 +7,10 @@
   </head>
   <body>
     <h1>Welcome!</h1>
-    <p>Thank you for your participation today. You will be shown a set of 3 images at a time. In each set, please select the product you would be most likely to purchase. You will be shown a set of images 25 times.</p>
+    <section id="intro">
+      <h2>Instructions:</h2>
+      <p>Thank you for your participation today. You will be shown a set of 3 images at a time. In each set, please select the product you would be most likely to purchase. You will be shown a set of images 25 times.</p>
+    </section>
     <section id="results-section">
       <section id="image-section">
         <img id="first-pic" src="" alt="">
@@ -16,6 +19,8 @@
       </section>
       <ul id="results-list"></ul>
     </section>
+    <canvas id="results-chart"></canvas>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.min.js"></script>
     <script src="js/app.js"></script>
   </body>
 </html>

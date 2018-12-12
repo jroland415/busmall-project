@@ -5,12 +5,13 @@ Merch.secondImgEl = document.getElementById('second-pic');
 Merch.thirdImgEl = document.getElementById('third-pic');
 Merch.sectionEl = document.getElementById('image-section');
 Merch.ulElement = document.getElementById('results-list');
-
+Merch.chartContext = document.getElementById('results-chart');
 
 Merch.allMerch = [];
 Merch.displayed = [];
 Merch.totalVotes = [];
 Merch.totalClicks = 0;
+Merch.altTextLabels = [];
 
 //store merchandise images in array using constructor function
 function Merch(filepath, description) {
@@ -19,6 +20,7 @@ function Merch(filepath, description) {
   this.numClicked = 0;
   this.numDisplayed = 0;
   Merch.allMerch.push(this);
+  Merch.altTextLabels.push(this.altText);
 }
 
 new Merch('img/bag.jpg', 'rolling suitcase resembling R2D2');
@@ -89,9 +91,10 @@ Merch.handleClick = function(event) {
 
   if(Merch.totalClicks > 24) {
     Merch.sectionEl.removeEventListener('click', Merch.handleClick);
-    alert('This concludes the survey.');
+    alert('This concludes the survey. Thank you.');
     Merch.getVotes();
     Merch.generateList();
+    Merch.displayChart();
   } else {
     Merch.renderMerch();
   }
@@ -114,3 +117,33 @@ Merch.generateList = function() {
 Merch.renderMerch();
 
 Merch.sectionEl.addEventListener('click', Merch.handleClick);
+
+Merch.displayChart = function() {
+  // eslint-disable-next-line no-undef
+  new Chart(Merch.chartContext, {
+    type: 'bar',
+    data: {
+      labels: Merch.altTextLabels,
+      datasets: [{
+        label: 'Number of Votes Per Product',
+        data: Merch.totalVotes,
+        backgroundColor: ['#333A56', '#52658F', '#333A56', '#52658F', '#333A56', '#52658F', '#333A56', '#52658F', '#333A56', '#52658F', '#333A56', '#52658F', '#333A56', '#52658F', '#333A56', '#52658F', '#333A56', '#52658F', '#333A56', '#52658F'],
+      }],
+    },
+    options: {
+      scales: {
+        yAxes: [{
+          ticks: {
+            beginAtZero: true
+          }
+        }],
+        xAxes: [{
+          ticks: {
+            stepSize: 1,
+            autoskip: false
+          }
+        }]
+      }
+    }
+  });
+};
