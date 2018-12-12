@@ -127,7 +127,7 @@ Merch.displayChart = function() {
       datasets: [{
         label: 'Number of Votes Per Product',
         data: Merch.totalVotes,
-        backgroundColor: ['red', 'orange', 'yellow', 'green', 'blue', 'red', 'orange', 'yellow', 'green', 'blue', 'red', 'orange', 'yellow', 'green', 'blue', 'red', 'orange', 'yellow', 'green', 'blue'],
+        backgroundColor: ['#333A56', '#52658F', '#333A56', '#52658F', '#333A56', '#52658F', '#333A56', '#52658F', '#333A56', '#52658F', '#333A56', '#52658F', '#333A56', '#52658F', '#333A56', '#52658F', '#333A56', '#52658F', '#333A56', '#52658F'],
       }],
     },
     options: {
