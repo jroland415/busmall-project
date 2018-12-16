@@ -15,8 +15,23 @@ canvas:empty {
   display: none;
 }
 
+header {
+  width: 1000px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.heading-accent {
+  border: 3px solid #333A56;
+  width: 200px;
+  height: 100px;
+  padding: 5px;
+}
+
 h1 {
-  margin: 20px auto 45px;
+  display: inline-block;
+  border-radius: 10px;
+  margin: 20px 80px 45px;
   width: 400px;
   text-align: center;
   font-size: 40px;
@@ -30,8 +45,18 @@ h2 {
   text-decoration: underline;
 }
 
+#image-section {
+  width: 1000px;
+  border-bottom: 8px double #333A56;
+  border-top: 8px double #333A56;
+  margin: 30px auto 30px;
+  padding: 10px 0 10px;
+}
+
 #intro {
   width: 1000px;
+  border-radius: 10px;
+  border: 8px groove #E8E8E8;
   margin: 20px auto 60px;
   padding: 5px 40px 10px;
   background-color: #F7F5E6;
@@ -43,14 +68,6 @@ h2 {
 p {
   font-size: 20px;
   font-style: italic;
-}
-
-#image-section {
-  width: 1000px;
-  border-bottom: 8px double #333A56;
-  border-top: 8px double #333A56;
-  margin: 30px auto 30px;
-  padding: 10px 0 10px;
 }
 
 #results-section img {

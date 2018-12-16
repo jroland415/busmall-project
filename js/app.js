@@ -6,42 +6,22 @@ Merch.thirdImgEl = document.getElementById('third-pic');
 Merch.ulElement = document.getElementById('results-list');
 Merch.chartContext = document.getElementById('results-chart');
 
-Merch.altTextLabels = ['rolling suitcase resembling R2D2',
-  'banana slicer',
-  'bathroom stand that holds a tablet and toilet paper',
-  'pair of toe-less yellow rubber boots',
-  'mini toaster over/pan/coffee maker combo',
-  'box of meatball bubblegum',
-  'red plastic chair with an upward-curving seat',
-  'cthulhu action figure',
-  'dog with a duck bill strapped to its face',
-  'can of dragon meat',
-  'set of pens with plastic eating utensils as caps',
-  'box of dog shoes that sweep the floor',
-  'pizza-cutter scissors',
-  'sleeping bag shaped like a shark',
-  'baby onesie that sweeps the floor',
-  'sleeping bag shaped like a tauntaun',
-  'can of unicorn meat',
-  'USB drive shaped like a tentacle',
-  'watering can with the spout pointing backward',
-  'wine glass with the opening on the side'];
 
 Merch.displayed = [];
 Merch.totalVotes = [];
 Merch.totalClicks = 0;
-//Merch.altTextLabels = [];
+Merch.altTextLabels = [];
 Merch.priorMerch = JSON.parse(localStorage.getItem('priorResults'));
 
-//store merchandise images in array using constructor function
+//stores merchandise images in array using constructor function
 function Merch(filepath, description) {
   this.path = filepath;
   this.altText = description;
   this.numClicked = 0;
   this.numDisplayed = 0;
-  //Merch.altTextLabels.push(this.altText);
 }
 
+//short-circuits creation of these instances if they already exist in local storage
 Merch.allMerch = Merch.priorMerch || [
   new Merch('img/bag.jpg', 'rolling suitcase resembling R2D2'),
   new Merch('img/banana.jpg', 'banana slicer'),
@@ -65,12 +45,13 @@ Merch.allMerch = Merch.priorMerch || [
   new Merch('img/wine-glass.jpg', 'wine glass with the opening on the side')
 ];
 
-//create random number generator
+//creates random number generator
 Merch.randomNum = function() {
   var ranNum = Math.floor(Math.random() * Merch.allMerch.length);
   return ranNum;
 };
 
+//creates array of random index numbers while avoiding repetition
 Merch.uniqueArray = function() {
   var ranIndex = Merch.randomNum();
   while(Merch.displayed.length < 6) {
@@ -82,7 +63,7 @@ Merch.uniqueArray = function() {
   }
 };
 
-//render 3 images at once
+//renders 3 images at once
 Merch.renderMerch = function() {
   Merch.uniqueArray();
 
@@ -101,6 +82,7 @@ Merch.renderMerch = function() {
   Merch.displayed.splice(2);
 };
 
+//tracks clicks, determines when to stop image selections and displays/stores results
 Merch.handleClick = function(event) {
   Merch.totalClicks++;
 
@@ -124,9 +106,11 @@ Merch.handleClick = function(event) {
   }
 };
 
+//creates arrays to store results and use in displaying results
 Merch.getVotes = function() {
   for(var i = 0; i < Merch.allMerch.length; i++) {
     Merch.totalVotes[i] = Merch.allMerch[i].numClicked;
+    Merch.altTextLabels[i] = Merch.allMerch[i].altText;
   }
 };
 
